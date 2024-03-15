@@ -3,6 +3,7 @@ import "./App.css";
 import Blogs from "./components/Blogs/Blogs";
 import Bookmarks from "./components/Bookmarks/Bookmarks";
 import Header from "./components/Header/Header";
+import Bookmark from "./components/Bookmark/Bookmark";
 
 function App() {
   const [bookmarks, setBookmarks] = useState([]);
@@ -13,9 +14,16 @@ function App() {
     setBookmarks(newBookmarks);
   };
 
-  const handleAddToReadTime = (time) => {
+  const handleAddToReadTime = (id, time) => {
     const newReadingTime = readingTime + time;
     setReadingTime(newReadingTime);
+
+    // remove the read
+
+    const remainingBookmarks = bookmarks.filter(
+      (Bookmark) => Bookmark.id !== id
+    );
+    setBookmarks(remainingBookmarks);
   };
 
   return (
